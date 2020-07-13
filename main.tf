@@ -15,4 +15,5 @@ resource "statuscake_test" "this" {
   basic_pass    = lookup(var.statuscake_tests[count.index], "basic_pass", "")
   confirmations = var.confirmations
   status_codes  = var.status_codes
+  paused        = var.paused
 }

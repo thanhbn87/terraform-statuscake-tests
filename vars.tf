@@ -47,3 +47,9 @@ variable "confirmations" {
   type        = string
   default     = "0"
 }
+
+variable "paused" {
+  description = "Whether or not the test is paused. Defaults to false"
+  type        = bool
+  default     = false
+}
