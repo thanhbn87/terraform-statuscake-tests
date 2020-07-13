@@ -53,3 +53,10 @@ variable "paused" {
   type        = bool
   default     = false
 }
+
+variable "timeout" {
+  description = "The timeout of the test in seconds"
+  type        = string
+  default     = "10"
+}
+
