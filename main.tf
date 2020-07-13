@@ -16,4 +16,5 @@ resource "statuscake_test" "this" {
   confirmations = var.confirmations
   status_codes  = var.status_codes
   paused        = var.paused
+  timeout       = var.timeout
 }
