@@ -8,9 +8,10 @@ variable "statuscake_apikey" {
   type        = string
 }
 
-variable "statuscake_contact_id" {
-  description = "The contact ID of StatusCake account"
-  type        = string
+variable "contact_group" {
+  description = "The contact group IDs of StatusCake account"
+  type        = list(string)
+  default     = []
 }
 
 variable "status_codes" {

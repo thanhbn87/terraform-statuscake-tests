@@ -9,7 +9,7 @@ resource "statuscake_test" "this" {
   website_url   = "https://${var.domain_name}/${lookup(var.statuscake_tests[count.index], "uri")}"
   test_type     = lookup(var.statuscake_tests[count.index], "type", "HTTP")
   check_rate    = var.check_rate
-  contact_group = [var.statuscake_contact_id]
+  contact_group = var.contact_group
   trigger_rate  = var.trigger_rate
   basic_user    = lookup(var.statuscake_tests[count.index], "basic_user", "")
   basic_pass    = lookup(var.statuscake_tests[count.index], "basic_pass", "")
