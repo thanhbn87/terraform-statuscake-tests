@@ -61,3 +61,8 @@ variable "timeout" {
   default     = "10"
 }
 
+variable "node_locations" {
+  description = "Set test node locations, must be array of strings."
+  type        = list(string)
+  default     = null
+}
