@@ -17,4 +17,6 @@ resource "statuscake_test" "this" {
   status_codes  = var.status_codes
   paused        = var.paused
   timeout       = var.timeout
+
+  node_locations = var.node_locations
 }
