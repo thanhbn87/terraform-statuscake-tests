@@ -91,12 +91,6 @@ variable "test_tags" {
   default     = []
 }
 
-variable "use_jar" {
-  description = "Set to true to enable the Cookie Jar. Required for some redirects. Default is false."
-  type        = bool
-  default     = null
-}
-
 variable "final_endpoint" {
   description = "Use to specify the expected Final URL in the testing process."
   type        = string
