@@ -94,7 +94,7 @@ variable "test_tags" {
 variable "use_jar" {
   description = "Set to true to enable the Cookie Jar. Required for some redirects. Default is false."
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "final_endpoint" {
