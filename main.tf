@@ -4,27 +4,27 @@ provider "statuscake" {
 }
 
 resource "statuscake_test" "this" {
-  count         = length(var.statuscake_tests)
-  website_name  = "${var.domain_name} ${lookup(var.statuscake_tests[count.index], "name")}"
-  website_url   = lookup(var.statuscake_tests[count.index], "url", "https://${var.domain_name}/${lookup(var.statuscake_tests[count.index], "uri")}")
-  test_type     = lookup(var.statuscake_tests[count.index], "type", "HTTP")
-  check_rate    = var.check_rate
-  contact_group = var.contact_group
-  trigger_rate  = var.trigger_rate
-  basic_user    = lookup(var.statuscake_tests[count.index], "basic_user", "")
-  basic_pass    = lookup(var.statuscake_tests[count.index], "basic_pass", "")
-  confirmations = var.confirmations
-  status_codes  = var.status_codes
-  paused        = var.paused
-  timeout       = var.timeout
+  for_each      = { for sc in var.statuscake_tests: sc.name => sc }
+  website_name  = var.domain_name == "" ? lookup(each.value, "name") : "${var.domain_name} ${lookup(each.value, "name")}"
+  website_url   = var.domain_name == "" ? lookup(each.value, "url") : lookup(each.value, "url", "https://${var.domain_name}/${lookup(each.value, "uri")}")
+  test_type     = lookup(each.value, "type", "HTTP")
+  check_rate    = lookup(each.value, "check_rate", var.check_rate)
+  contact_group = lookup(each.value, "contact_group", var.contact_group)
+  trigger_rate  = lookup(each.value, "trigger_rate", var.trigger_rate)
+  basic_user    = lookup(each.value, "basic_user", "")
+  basic_pass    = lookup(each.value, "basic_pass", "")
+  confirmations = lookup(each.value, "confirmations", var.confirmations)
+  status_codes  = lookup(each.value, "status_codes", var.status_codes)
+  paused        = lookup(each.value, "paused", false)
+  timeout       = lookup(each.value, "timeout", var.timeout)
 
-  port             = var.port
-  custom_header    = var.custom_header
-  user_agent       = var.user_agent
-  node_locations   = var.node_locations
-  test_tags        = var.test_tags
-  final_endpoint   = var.final_endpoint
-  enable_ssl_alert = var.enable_ssl_alert
-  follow_redirect  = var.follow_redirect
-  virus            = var.virus
+  port             = lookup(each.value, "port", null)
+  custom_header    = lookup(each.value, "custom_header", null)
+  user_agent       = lookup(each.value, "user_agent", null)
+  node_locations   = lookup(each.value, "node_locations", null)
+  test_tags        = lookup(each.value, "test_tags", [])
+  final_endpoint   = lookup(each.value, "final_endpoint", null)
+  enable_ssl_alert = lookup(each.value, "enable_ssl_alert", false)
+  follow_redirect  = lookup(each.value, "follow_redirect", false)
+  virus            = lookup(each.value, "virus", 0)
 }

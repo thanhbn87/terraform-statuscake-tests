@@ -23,6 +23,7 @@ variable "status_codes" {
 variable "domain_name" {
   description = "The Domain name of the test"
   type        = string
+  default     = ""
 }
 
 variable "statuscake_tests" {
@@ -49,68 +50,8 @@ variable "confirmations" {
   default     = "0"
 }
 
-variable "paused" {
-  description = "Whether or not the test is paused. Defaults to false"
-  type        = bool
-  default     = false
-}
-
 variable "timeout" {
   description = "The timeout of the test in seconds"
   type        = string
   default     = "10"
-}
-
-variable "node_locations" {
-  description = "Set test node locations, must be array of strings."
-  type        = list(string)
-  default     = null
-}
-
-variable "port" {
-  description = "The port to use when specifying a TCP test."
-  type        = number
-  default     = null
-}
-
-variable "custom_header" {
-  description = "Custom HTTP header, must be supplied as JSON."
-  type        = string
-  default     = null
-}
-
-variable "user_agent" {
-  description = "Test with a custom user agent set."
-  type        = string
-  default     = null
-}
-
-variable "test_tags" {
-  description = "Set test tags, must be array of strings."
-  type        = list(string)
-  default     = []
-}
-
-variable "final_endpoint" {
-  description = "Use to specify the expected Final URL in the testing process."
-  type        = string
-  default     = null
-}
-
-variable "enable_ssl_alert" {
-  description = "HTTP Tests only. If enabled, tests will send warnings if the SSL certificate is about to expire. Paid users only. Default is false"
-  type        = bool
-  default     = false
-}
-
-variable "follow_redirect" {
-  description = "Use to specify whether redirects should be followed, set to true to enable. Default is false."
-  type        = bool
-  default     = false
-}
-
-variable "virus" {
-  description = "Enable virus checking or not. 1 to enable."
-  type        = number
-  default     = 0
 }
