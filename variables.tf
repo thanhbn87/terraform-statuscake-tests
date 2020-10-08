@@ -9,9 +9,9 @@ variable "statuscake_apikey" {
 }
 
 variable "contact_group" {
-  description = "The contact group IDs of StatusCake account"
-  type        = list(string)
-  default     = []
+  description = "The contact group IDs of StatusCake account. String splitted by ','"
+  type        = string
+  default     = ""
 }
 
 variable "status_codes" {
@@ -28,7 +28,7 @@ variable "domain_name" {
 
 variable "statuscake_tests" {
   description = "The list of tests for the domain name"
-  type        = list
+  type        = list(any)
   default     = []
 }
 
