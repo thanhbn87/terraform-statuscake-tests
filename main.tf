@@ -6,7 +6,7 @@ provider "statuscake" {
 resource "statuscake_test" "this" {
   for_each      = { for sc in var.statuscake_tests: sc.name => sc }
   website_name  = var.domain_name == "" ? lookup(each.value, "name") : "${var.domain_name} ${lookup(each.value, "name")}"
-  website_url   = var.domain_name == "" ? lookup(each.value, "url") : lookup(each.value, "url", "https://${var.domain_name}/${lookup(each.value, "uri")}")
+  website_url   = var.domain_name == "" ? lookup(each.value, "url") : lookup(each.value, "url", "https://${var.domain_name}/${lookup(each.value, "uri", "")}")
   test_type     = lookup(each.value, "type", "HTTP")
   check_rate    = lookup(each.value, "check_rate", var.check_rate)
   contact_group = split(",", lookup(each.value, "contact_group", var.contact_group))
