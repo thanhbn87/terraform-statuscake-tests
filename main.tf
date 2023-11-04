@@ -31,10 +31,10 @@ resource "statuscake_uptime_check" "this" {
 
 
       dynamic "basic_authentication" {
-        for_each = try(http_check.basic_user != null ? [1] : null, [])
+        for_each = try(each.value["basic_user"] != null ? [1] : null, [])
         content {
-          username = try(http_check.basic_user, "")
-          password = try(http_check.basic_pass, "")
+          username = try(each.value["basic_user"], "")
+          password = try(each.value["basic_pass"], "")
         }
       }
 
