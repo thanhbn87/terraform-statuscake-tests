@@ -20,7 +20,7 @@ resource "statuscake_uptime_check" "this" {
   }
 
   dynamic "http_check" {
-    for_each = each.value["dns_check"] != null || each.value["tcp_check"] != null ? [] : try(each.value["http_check"] != null ? [1] : null, [])
+    for_each = try(each.value["dns_check"], null) != null || try(each.value["tcp_check"], null) != null ? [] : try(each.value["http_check"] != null ? [1] : null, [])
     content {
       enable_cookies   = try(http_check.enable_cookies, false)
       final_endpoint   = try(http_check.final_endpoint, null)
