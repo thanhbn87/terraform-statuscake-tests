@@ -5,6 +5,6 @@ variable "api_token" {
 
 variable "statuscake_tests" {
   description = "The list of tests for the domain name"
-  type        = list(map(any))
+  type        = any
   default     = []
 }
