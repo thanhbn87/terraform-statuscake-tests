@@ -2,7 +2,7 @@ provider "statuscake" {
   api_token = var.api_token
 }
 
-resource "statuscake_uptime_check" "example" {
+resource "statuscake_uptime_check" "this" {
   for_each = { for test in var.statuscake_tests : test["name"] => test }
 
   name           = each.value["name"]
