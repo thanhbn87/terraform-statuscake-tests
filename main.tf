@@ -15,12 +15,12 @@ resource "statuscake_uptime_check" "this" {
   tags           = try(each.value["tags"], [])
 
   monitored_resource {
-    address = each.value["monitored_resource"]["address"]
-    host    = try(each.value["monitored_resource"]["host"], null)
+    address = each.value["address"]
+    host    = try(each.value["host"], null)
   }
 
   dynamic "http_check" {
-    for_each = try(each.value["http_check"] != null ? [1] : null, [])
+    for_each = each.value["dns_check"] != null || each.value["tcp_check"] != null ? [] : try(each.value["http_check"] != null ? [1] : null, [])
     content {
       enable_cookies   = try(http_check.enable_cookies, false)
       final_endpoint   = try(http_check.final_endpoint, null)
@@ -31,10 +31,10 @@ resource "statuscake_uptime_check" "this" {
 
 
       dynamic "basic_authentication" {
-        for_each = try(http_check.basic_authentication != null ? [1] : null, [])
+        for_each = try(http_check.basic_user != null ? [1] : null, [])
         content {
-          username = try(http_check.basic_authentication.username, "")
-          password = try(http_check.basic_authentication.password, "")
+          username = try(http_check.basic_user, "")
+          password = try(http_check.basic_pass, "")
         }
       }
 
