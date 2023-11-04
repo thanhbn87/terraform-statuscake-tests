@@ -1,10 +1,10 @@
 terraform {
-  required_version = ">= 0.13.6"
+  required_version = ">= 1.3.0"
 
   required_providers {
     statuscake = {
       source  = "StatusCakeDev/statuscake"
-      version = "~> 1.0"
+      version = "~> 2.2.2"
     }
   }
 }
