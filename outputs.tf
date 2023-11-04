@@ -1,4 +1,4 @@
-output "ids" {
+output "test_ids" {
   description = "The ID of StatusCake Tests"
-  value       = try(statuscake_uptime_check.this[*].id, [])
+  value       = statuscake_test.this.*.test_id
 }
