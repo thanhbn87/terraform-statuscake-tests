@@ -9,7 +9,7 @@ resource "statuscake_uptime_check" "this" {
   check_interval = try(each.value["check_interval"], 300)
   confirmation   = try(each.value["confirmation"], 1)
   trigger_rate   = try(each.value["trigger_rate"], 10)
-  contact_groups = try(each.value["contact_groups"], [])
+  contact_groups = try(var.contact_groups, each.value["contact_groups"], [])
   paused         = try(each.value["paused"], false)
   regions        = try(each.value["regions"], [])
   tags           = try(each.value["tags"], [])

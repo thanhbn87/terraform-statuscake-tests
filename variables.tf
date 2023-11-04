@@ -8,3 +8,9 @@ variable "statuscake_tests" {
   type        = any
   default     = []
 }
+
+variable "contact_groups" {
+  description = "The list of contact groups."
+  type        = list(string)
+  default     = null
+}
