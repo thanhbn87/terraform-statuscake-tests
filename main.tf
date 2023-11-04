@@ -7,7 +7,7 @@ resource "statuscake_uptime_check" "this" {
 
   name           = each.value["name"]
   check_interval = try(each.value["check_interval"], 300)
-  confirmation   = try(each.value["confirmation"], 1)
+  confirmation   = try(each.value["confirmation"], 2)
   trigger_rate   = try(each.value["trigger_rate"], 10)
   contact_groups = try(var.contact_groups, each.value["contact_groups"], [])
   paused         = try(each.value["paused"], false)
